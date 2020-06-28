@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/footer.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/footer.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sidebar.css') }}">
   <script src="{{ url_for('static', filename='swagger/lib/swagger-client.js') }}"></script>
   <script src="{{ url_for('static', filename='js/knetmaps_adaptator.js') }}"></script>
   <script src="{{ url_for('static', filename='js/lib.js') }}"></script>
@@ -62,18 +62,18 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Search <b
                       class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Account information</a></li>
+                    <li><a href="{{ url_for('search_advance') }}">Search advance</a></li>
                     <li><a href="#">Change Password</a></li>
                     <li><a href="#">Logout</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Search <b
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Help <b
                       class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Account information</a></li>
-                    <li><a href="#">Change Password</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="{{ url_for('documentation') }}">Documentation</a></li>
+                    <li><a href="#">Faceted Search</a></li>
+                    <li><a href="#">AgroLD API</a></li>
                   </ul>
                 </li>
                 <li><a href="{{ url_for('about')}}">About</a></li>
@@ -121,7 +121,7 @@
     </div>
   </main>
 
-  <footer class="footer" {% block script %}{% endblock %} >
+  <footer class="footer"  >
   <div class="container">
     <div class="col-md-12 col-lg-12 resolve-grid">
       <div class="col-md-2">

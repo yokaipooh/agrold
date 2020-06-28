@@ -14,7 +14,7 @@ body {
   background-attachment: fixed;
 }
 .body-wrap {
-  min-height: 200px;
+  min-height: 150px;
 }
 .body-wrap {
   position: relative;
@@ -34,7 +34,7 @@ body {
   bottom: 0;
 }
 nav {
-  margin-top: 60px;
+  margin-top: 10px;
   box-shadow: 5px 4px 5px #000;
 }
 .article-title {
@@ -132,9 +132,7 @@ button#afft {
     border : none ;
     border-right : solid 1px #333 ;
 }
-body {
-    padding-top: 50px;
-}
+
 .input-group-btn .dropdown-menu {
     margin-top: -1px;
 }

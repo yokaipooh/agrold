@@ -52,12 +52,15 @@ def home():
 #        return redirect(url_for('search_results', query = query))
 @app.route('/about')
 def about():
-    return render_template('about.html', title =' About')
+    return render_template('about.html', title ='About')
 
 @app.route('/search_advance')
 def search_advance():
-    return render_template('search_adv.html', title =' Search Advance')
+    return render_template('search_adv.html', title ='Search Advance')
 
+@app.route('/documentation')
+def documentation():
+    return render_template('documentation.html', title ='Documentation')
 
 
 
