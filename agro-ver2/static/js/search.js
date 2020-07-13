@@ -1,8 +1,11 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
+
 var result = "";
 var sparqljson;
 var numberOfTables = 0;
@@ -16,22 +19,22 @@ function drawResultTable(data, entityType, keyword, page) {
         var nextBtnId = "nextPage" + numberOfTables;
         numberOfTables++;
         addNavButtonsADVS(nbResults, page, previousBtnId, nextBtnId);
-        $("#" + previousBtnId).attr("onclick", 'search("' + entityType + '","' + keyword + '",' + (page - 1) + ')');
+        $("/" + previousBtnId).attr("onclick", 'search("' + entityType + '","' + keyword + '",' + (page - 1) + ')');
         console.log("drawResultTable currentPage 2: " + page);
-        //$("#" + previousBtnId).attr("title", '"search("' + entityType + '","' + keyword + '",' + (page - 1) + ')"');
-        $("#" + nextBtnId).attr("onclick", 'search("' + entityType + '","' + keyword + '",' + (page + 1) + ')');
-        $("#" + nextBtnId).attr("adja", 'gloc');
+        //$("/" + previousBtnId).attr("title", '"search("' + entityType + '","' + keyword + '",' + (page - 1) + ')"');
+        $("/" + nextBtnId).attr("onclick", 'search("' + entityType + '","' + keyword + '",' + (page + 1) + ')');
+        $("/" + nextBtnId).attr("adja", 'gloc');
         processHtmlResult(entityType);
     });
 }
 /*
- * 
+ *
  */
 function search(entityType, keyword, page) {
     window.swagger = new SwaggerClient({
         url: AGROLDAPIJSONURL,
         success: function () {
-            displayHoldMessage("#result");
+            displayHoldMessage("/result");
             switch (entityType) {
                 case "gene":
                     swagger.apis.gene.getGenesByKeyWord({format: DEFAULTAPIFORMAT, keyword: keyword, pageSize: DEFAULT_PAGE_SIZE, page: page},
@@ -64,7 +67,7 @@ function search(entityType, keyword, page) {
                     });
                     break;
                 default:
-                    $("#result").html("nothing found");
+                    $("/result").html("nothing found");
             }
         }
     });
