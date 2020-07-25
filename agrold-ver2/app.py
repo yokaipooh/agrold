@@ -57,9 +57,13 @@ def home():
 def about():
     return render_template('about.html', title =' About')
 
-@app.route('/search_advance')
-def search_advance():
-    return render_template('search_adv.html', title =' Search Advance')
+@app.route('/documentation')
+def documentation():
+    return render_template('documentation.html', title ='Documentation')
+
+@app.route('/quicksearch')
+def quicksearch():
+    return render_template('quicksearch.html', title ='Quick Search')
 
 
 @app.route('/search_advance/<tag>')
