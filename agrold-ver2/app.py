@@ -2,6 +2,8 @@ from flask import Flask, render_template, json, request, redirect, url_for, json
 from forms.searchForms import SearchForm
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from SPARQLWrapper import SPARQLWrapper, JSON
+import requests
 import os
 
 app = Flask(__name__, template_folder='templates')
@@ -111,5 +113,43 @@ def test():
                 print(genes)
         return render_template('genes.html',genes= json.loads(genes),keyword= keyword, type = type)
     return render_template('api.html', title ='API')
+
+
+@app.route('/test/sparql', methods = ['GET'])
+def sparql():
+    entity_uri = request.args.get('entity_uri')
+    results = None
+    if entity_uri:
+        sparql = SPARQLWrapper("http://agrold.southgreen.fr/sparql")
+
+        sparql.setQuery("""
+            PREFIX uri:<%s>
+            PREFIX agrold:<http://www.southgreen.fr/agrold/vocabulary/>
+        SELECT ?property  ?hasValue ?isValueOf
+        WHERE {
+          { uri: ?property ?hasValue }
+          UNION
+          { ?isValueOf ?property uri:}
+        }
+        """ % entity_uri)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+
+        # for result in results["results"]["bindings"]:
+            # print(result["property"], result["hasValue"])
+    return render_template('describe.html', results=results, entity_uri=entity_uri)
+
+@app.route('/sparql1', methods = ['GET'])
+def sparql1():
+    query = request.args.get('query')
+    results = None
+    if query:
+        sparql = SPARQLWrapper("http://agrold.southgreen.fr/sparql")
+        sparql.setQuery("""
+            %s
+        """ % query)
+        sparql.setReturnFormat(JSON)
+        results = sparql.query().convert()
+    return render_template('sparql.html', results=results, query=query)
 if __name__ == '__main__':
     app.run(Debug = True)

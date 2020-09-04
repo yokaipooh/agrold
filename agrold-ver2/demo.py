@@ -15,7 +15,10 @@ sparql.setReturnFormat(JSON)
 results = sparql.query().convert()
 
 for result in results["results"]["bindings"]:
-    print(result["property"], result["hasValue"])
-
-
+    if "hasValue" in result:
+        print("hasValue")
+        print("\t", result["property"], result["hasValue"])
+    else:
+        print("isValueOf")
+        print("\t",result["property"], result["isValueOf"])
 

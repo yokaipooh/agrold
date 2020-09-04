@@ -85,7 +85,7 @@ ontological concepts: 'plant height' or 'regulation of gene expression'.<br>
         <td><a class="uri" target="_blank" href="{{ gene['graph'] }}">{{ gene["graph"] }}</a></td>
         <td>{{ gene["keyword_reference"] }}</td>
         <td><a href="http://agrold.southgreen.fr/agrold/agrold_explorer.jsp?iri={{ gene['URI'] }}" target="_blank" style="text-decoration: none; color:#00B5AD; font-weight:bold"> Visualize </a></td>
-        <td><a href="http://agrold.southgreen.fr/agrold/sparqleditor.jsp?query=PREFIX%20uri:%3C{{ gene['URI'] }}" target="_blank" style="text-decoration: none; color:#00B5AD; font-weight:bold"> Sparql </a></td>
+        <td><a href="http://127.0.0.1:5000/test/sparql?entity_uri={{ gene['URI'] }}" target="entity_uri" style="text-decoration: none; color:#00B5AD; font-weight:bold"> Sparql </a></td>
         </tr>
         {% endfor %}
     {% else %}
